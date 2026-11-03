@@ -1,6 +1,7 @@
-import os
+import secrets
 from pathlib import Path
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -11,8 +12,8 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=ROOT_DIR / ".env", extra="ignore")
 
     app_name: str = "Minecraft Link API"
-    access_key: str = "fiker-mc-login-demo-key"
-    secret_key: str = "please-change-this-development-secret"
+    access_key: str = "ferkim"
+    secret_key: str = Field(default_factory=lambda: secrets.token_urlsafe(48))
     token_algorithm: str = "HS256"
     token_expire_minutes: int = 60 * 24
 

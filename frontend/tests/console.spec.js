@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test'
 import { authorize, friends, mockApi, navigate, room, settleMotion } from './fixtures'
 
-test('access validation, local capture and account login', async ({ page }) => {
+test('access validation, local capture and account login', async ({ page }, testInfo) => {
+  if (testInfo.project.name === 'desktop') await page.setViewportSize({ width: 1440, height: 740 })
   await mockApi(page)
   await page.goto('/')
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('回到你的方块世界')
@@ -11,8 +12,21 @@ test('access validation, local capture and account login', async ({ page }) => {
   await page.getByLabel('访问密钥', { exact: true }).fill('synthetic-valid-key')
   await page.getByRole('button', { name: '验证并继续' }).click()
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('连接我的世界')
+  await expect(page.locator('.auth-topbar .brand')).toBeVisible()
+  await expect(page.locator('.account-login-content')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)')
+  await expect(page.locator('.account-login-content')).toHaveCSS('border-top-width', '0px')
   await page.getByRole('button', { name: '读取登录凭据', exact: true }).click()
   await expect(page.getByRole('status')).toContainText('已通过格式校验')
+  await expect(page.locator('#captured-sauth-json')).toContainText('"client_login_sn": "test-login"')
+  await expect(page.locator('#captured-sauth-json')).toContainText('"sessionid": "test-session"')
+  if (testInfo.project.name === 'desktop') {
+    const panel = await page.locator('.captured-sauth').boundingBox()
+    expect(panel.y + panel.height).toBeLessThanOrEqual(740)
+  }
+  await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
+  await page.getByRole('button', { name: '复制 sauth JSON' }).click()
+  await expect(page.locator('.captured-sauth-head button')).toContainText('已复制')
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toContain('"udid": "test-udid"')
   await page.getByRole('button', { name: '登录并进入控制台' }).click()
   await expect(page.locator('.friend-row')).toHaveCount(7)
   await expect(page.locator('[placeholder*="API 地址"]')).toHaveCount(0)

@@ -7,7 +7,7 @@ export default defineConfig({
   workers: 2,
   reporter: [['list']],
   use: {
-    baseURL: process.env.UI_TEST_URL || 'http://127.0.0.1:5173',
+    baseURL: process.env.UI_TEST_URL || 'http://127.0.0.1:8958',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     launchOptions: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE } : {},
@@ -19,7 +19,7 @@ export default defineConfig({
   ],
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1',
-    url: 'http://127.0.0.1:5173',
+    url: 'http://127.0.0.1:8958',
     reuseExistingServer: true,
   },
 })

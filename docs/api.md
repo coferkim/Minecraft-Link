@@ -3,19 +3,21 @@
 本文档对应本项目的 FastAPI 后端。服务默认监听：
 
 ```text
-http://127.0.0.1:8000
+http://127.0.0.1:8959
 ```
 
-交互式文档：
+文档入口：
 
 ```text
-http://127.0.0.1:8000/docs
-http://127.0.0.1:8000/openapi.json
+Web 控制台：http://127.0.0.1:8958
+控制台侧边栏：API 文档
+OpenAPI JSON：http://127.0.0.1:8959/openapi.json
 ```
 
-仓库内的 OpenAPI 快照：
+仓库内的完整 API 文档和 OpenAPI 快照：
 
 ```text
+docs/api.md
 docs/openapi.json
 ```
 
