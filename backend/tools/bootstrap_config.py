@@ -1,8 +1,13 @@
 from pathlib import Path
 import secrets
+import sys
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = (
+    Path(sys.executable).resolve().parent
+    if getattr(sys, "frozen", False)
+    else Path(__file__).resolve().parents[2]
+)
 ENV_PATH = ROOT / ".env"
 EXAMPLE_PATH = ROOT / ".env.example"
 PLACEHOLDER_SECRETS = {"", "GENERATE_ON_FIRST_START", "please-change-this-development-secret"}

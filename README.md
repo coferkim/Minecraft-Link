@@ -6,19 +6,23 @@
 
 Minecraft-Link 将本机已登录的 Minecraft 客户端会话连接到本地 API，提供好友、玩家资料和联机房间查询，并附带可视化控制台与接口文档。本项目为非官方社区项目，请只在自己的设备和获授权的账号上使用。
 
-## 快速开始
+## 下载使用
 
-### 启动
+从 [GitHub Releases](https://github.com/coferkim/Minecraft-Link/releases/latest) 下载 `Minecraft-Link-Windows-x64.zip`。普通使用不需要安装 Python、Node.js 或其他运行环境。
 
-1. 安装 Python 和 Node.js，并确保命令行可以使用 `python`（或 `py`）、`node` 和 `npm`。
-2. 在 Windows 上双击项目根目录的 `start.cmd`。
-3. 首次启动会自动准备后端和前端依赖，在项目根目录创建 `.env`，并生成随机签名密钥；完成后会打开 Web 控制台。
-4. 保持启动窗口开启，关闭该窗口会停止 Web 和 API 服务。
+1. 将 ZIP 解压到有写入权限的文件夹，不要直接在压缩软件内运行。
+2. 双击解压目录中的 `start.cmd`。启动器会在同一窗口显示实时日志，并自动打开 Web 控制台。
+3. 保持命令行窗口开启以运行服务；关闭窗口或按 `Ctrl+C` 会停止服务。
+4. 首次运行会在程序目录生成 `.env`、`data` 和 `logs`。访问密钥默认为 `ferkim`，签名密钥会随机生成并保存在 `.env` 中。
+
+运行日志同时显示在命令行窗口，并写入 `logs/minecraft-link.log`。配置和数据保存在程序目录；升级前请备份 `.env` 和 `data`。
 
 | 服务 | 地址 |
 | --- | --- |
 | Web 控制台 | http://127.0.0.1:8958 |
 | API 基地址 | http://127.0.0.1:8959 |
+
+默认只监听本机回环地址，不要将端口直接暴露到公网。
 
 ### 登录 Minecraft 账号
 
@@ -70,6 +74,10 @@ Authorization: Bearer <access_token>
 ```
 
 好友、房间等接口的完整参数和调用示例见 [docs/api.md](docs/api.md)。
+
+## 从源码运行
+
+源码启动适用于开发和修改项目，需要本机安装 Python、Node.js 与 npm。Windows 用户可运行项目根目录的 `start.cmd`，脚本会准备依赖并启动服务。日常使用建议下载上方 Releases 的免环境压缩包。
 
 ## 配置与安全
 

@@ -7,8 +7,10 @@ import sqlite3
 from pathlib import Path
 from typing import Any
 
+from app.core.config import ROOT_DIR
 
-DATA_DIR = Path(__file__).resolve().parents[3] / "data"
+
+DATA_DIR = ROOT_DIR / "data"
 DB_PATH = DATA_DIR / "app.sqlite"
 LOCK = asyncio.Lock()
 
