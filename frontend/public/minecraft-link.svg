@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none">
+  <title>Minecraft Link</title>
+  <path fill="#F9E9F0" d="M24 4h112l20 20v112l-20 20H24L4 136V24z"/>
+  <path fill="#CC4775" d="M44 30h44l14 14v22H86V50l-4-4H50l-4 4v32l4 4h16v16H44L30 88V44z"/>
+  <path fill="#3C9993" d="M116 130H72l-14-14V94h16v16l4 4h32l4-4V78l-4-4H94V58h22l14 14v44z"/>
+  <path stroke="#F9E9F0" stroke-width="25" d="m66 94 28-28"/>
+  <path stroke="#AB365F" stroke-width="15" d="m66 94 28-28"/>
+</svg>
